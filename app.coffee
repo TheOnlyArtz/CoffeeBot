@@ -29,8 +29,8 @@ client.on "message", (message) ->
   args = message.content.split ' '.slice 1
   command = message.content.split prefix
 
+  return if command[0].charAt 0 != prefix
   cmd = client.commands.get command[1]
-  console.log cmd, command[1]
   if cmd
     try
       cmd.run client, message, args

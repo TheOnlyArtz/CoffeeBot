@@ -1,6 +1,8 @@
 exports.run = (client, message, args) ->
 
-  message.channel.send 'Command handler works'
+  message.channel.send 'Pinging...'
+    .then (msg) ->
+      msg.edit("Pong! Took #{msg.createdTimestamp - message.createdTimestamp}ms")
 
 exports.help = {
   name: 'ping'
