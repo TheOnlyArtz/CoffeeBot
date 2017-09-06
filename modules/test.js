@@ -1,5 +1,0 @@
-
-
-exports.help = {
-  name: 'test'
-}

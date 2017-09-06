@@ -3,7 +3,7 @@ Discord = (require 'discord.js')
 client = new Discord.Client()
 config = (require './config.json')
 fs = (require 'fs')
-
+prefix = "-"
 # Command loaders.
 client.commands = new Discord.Collection()
 
@@ -26,13 +26,16 @@ client.on "ready", () ->
 
 @event
 client.on "message", (message) ->
-  if message.content == 'ping'
+  args = message.content.split ' '.slice 1
+  command = message.content.split prefix
+
+  cmd = client.commands.get command[1]
+  console.log cmd, command[1]
+  if cmd
     try
-      message.channel.send 'Pinging...'
-        .then (e) =>
-          e.edit "Ping! Took: #{e.createdTimestamp - message.createdTimestamp}ms"
+      cmd.run client, message, args
+      console.debug "#{message.author.username} has just been exec #{cmd.help.name}"
     catch error
-      console.log 'Error'
       throw error
 
 client.login config.token
