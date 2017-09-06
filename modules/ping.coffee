@@ -7,5 +7,6 @@ exports.run = (client, message, args) ->
       console.error e # Catch the errors if there are
 
 exports.help = {
-  name: 'ping'
+  name: 'ping',
+  description : 'I will reply with pong fast as possible as my response time (ms)'
 }
