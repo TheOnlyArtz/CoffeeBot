@@ -5,7 +5,13 @@ config = (require './config.json')
 fs = (require 'fs')
 
 # Command loaders.
+client.commands = new Discord.Collection()
 
+fs.readdir './modules', (err, files) ->
+  throw err if err
+
+  jsFiles = files.filter f => f.split '.'.pop() ===  'js'
+  console.log jsFiles
 client.on "ready", () ->
   console.log('I\'m ready')
 
