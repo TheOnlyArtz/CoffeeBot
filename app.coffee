@@ -10,8 +10,17 @@ client.commands = new Discord.Collection()
 fs.readdir './modules', (err, files) ->
   throw err if err
 
-  jsFiles = files.filter f => f.split '.'.pop() ===  'js'
+  jsFiles = (f for f in files when f.split '.'.pop == 'js')
   console.log jsFiles
+
+  for i, f in jsFiles
+    try
+      props = (require "./modules/#{i}")
+      console.log "#{f + 1} Loaded #{i}"
+      client.commands.set props.help.name , props
+    catch error
+      throw error
+
 client.on "ready", () ->
   console.log('I\'m ready')
 

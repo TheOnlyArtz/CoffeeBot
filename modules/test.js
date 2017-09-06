@@ -1,0 +1,5 @@
+
+
+exports.help = {
+  name: 'test'
+}
