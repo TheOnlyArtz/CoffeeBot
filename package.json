@@ -21,6 +21,7 @@
   "homepage": "https://github.com/TheOnlyArtz/CoffeeBot#readme",
   "dependencies": {
     "artzlogger": "0.0.4",
-    "discord.js": "^11.2.1"
+    "discord.js": "^11.2.1",
+    "moment": "^2.18.1"
   }
 }

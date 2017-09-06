@@ -3,6 +3,8 @@ Discord = (require 'discord.js')
 client = new Discord.Client()
 config = (require './config.json')
 fs = (require 'fs')
+artzlogger = (require 'artzlogger')
+client.logger = new artzlogger
 prefix = "-"
 # Command loaders.
 client.commands = new Discord.Collection()
@@ -11,18 +13,18 @@ fs.readdir './modules', (err, files) ->
   throw err if err
 
   jsFiles = (f for f in files when f.split '.'.pop == 'js')
-  console.log jsFiles
+  client.logger.info jsFiles
 
   for i, f in jsFiles
     try
       props = (require "./modules/#{i}")
-      console.log "#{f + 1} Loaded #{i}"
+      client.logger.info "#{f + 1} Loaded #{i}"
       client.commands.set props.help.name , props
     catch error
       throw error
 
 client.on "ready", () ->
-  console.log('I\'m ready')
+  client.logger.info('I\'m ready')
 
 @event
 client.on "message", (message) ->
