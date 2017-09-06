@@ -13,7 +13,6 @@ fs.readdir './modules', (err, files) ->
   throw err if err
 
   jsFiles = (f for f in files when f.split '.'.pop == 'js')
-  client.logger.info jsFiles
 
   for i, f in jsFiles
     try
