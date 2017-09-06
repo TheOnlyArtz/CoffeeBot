@@ -1,0 +1,25 @@
+{
+  "name": "coffeebot",
+  "version": "0.0.1",
+  "description": "First bot in the world to be coded with coffeee",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheOnlyArtz/CoffeeBot.git"
+  },
+  "keywords": [
+    "coffeeeeeee"
+  ],
+  "author": "TheOnlyArtz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheOnlyArtz/CoffeeBot/issues"
+  },
+  "homepage": "https://github.com/TheOnlyArtz/CoffeeBot#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1"
+  }
+}
