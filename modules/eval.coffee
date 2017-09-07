@@ -1,15 +1,15 @@
 CoffeeScript = require('coffeescript')
 { exec } = (require 'child_process')
-# js2coffee = (require 'js2coffee')
 exports.run = (client, message, args) ->
   codes = args
   final = CoffeeScript.compile(codes, { bare: 'on' }).replace('.then(e', ',').replace('})))', '}))')
   try
-    theEval = cleanEval(codes, client, message, args)
-    # code = js2coffee.build(codes).catch(e);
-    message.channel.send "\`\`\`xl\n#{eval(final)}\n\`\`\`"
+    theEval = eval(CoffeeScript.compile(codes, { bare: 'on' })
+    .replace('.then(e', ',')
+    .replace('})))', '}))'))
+    message.channel.send "Input:\`\`\`coffee\n#{codes}\`\`\`\nOutput:\`\`\`coffee\n#{theEval.toString().replace(/object promise/i, '<Promise Pending>')}\n\`\`\`"
   catch error
-    console.error error
+    message.channel.send "\`\`\`error\n#{error.toString()}\n\`\`\`"
 
 exports.help = {
   name: 'eval',

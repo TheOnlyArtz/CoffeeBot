@@ -42,7 +42,6 @@ client.on "message", (message) ->
   try
     args = message.content.split(' ').slice(1).join(' ')
     command = message.content.split(prefix)[1].slice(' ').split(' ')[0]
-    console.log command
     cmd = client.commands.get command
     cmd = client.commands.get(client.aliases.get command) if cmd == undefined
     if cmd
