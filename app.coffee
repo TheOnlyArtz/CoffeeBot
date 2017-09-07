@@ -7,8 +7,8 @@ artzlogger = (require 'artzlogger')
 client.logger = new artzlogger
 prefix = "-"
 # Command loaders.
-client.commands = new Discord.Collection()
-
+client.commands = new Discord.Collection
+client.aliases = new Discord.Collection
 fs.readdir './modules', (err, files) ->
   throw err if err
 
@@ -16,9 +16,20 @@ fs.readdir './modules', (err, files) ->
 
   for i, f in jsFiles
     try
+
+
       props = (require "./modules/#{i}")
+
+      # Log the loading files.
       client.logger.info "#{f + 1} Loaded #{i}"
+
+      #  Set the collections to the commands and aliases
+
       client.commands.set props.help.name , props
+
+      for a in props.help.aliases
+        client.aliases.set(a, props.help.name)
+
     catch error
       throw error
 
@@ -32,6 +43,8 @@ client.on "message", (message) ->
 
   return if command[0].charAt 0 != prefix
   cmd = client.commands.get command[1]
+  cmd = client.commands.get(client.aliases.get command[1]) if cmd == undefined
+
   if cmd
     try
       cmd.run client, message, args

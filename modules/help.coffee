@@ -10,5 +10,6 @@ exports.run = (client, message, args) ->
     message.channel.send(new Discord.RichEmbed().setDescription(textArr.join '\n').setColor(0x25aa7))
 exports.help = {
   name: 'help',
+  aliases : ['h']
   description : 'This command?'
 }
