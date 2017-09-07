@@ -21,7 +21,9 @@
   "homepage": "https://github.com/TheOnlyArtz/CoffeeBot#readme",
   "dependencies": {
     "artzlogger": "0.0.4",
+    "coffeescript": "^1.12.7",
     "discord.js": "^11.2.1",
+    "js2coffee": "^2.2.0",
     "moment": "^2.18.1"
   }
 }

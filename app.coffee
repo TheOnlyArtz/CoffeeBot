@@ -36,20 +36,23 @@ fs.readdir './modules', (err, files) ->
 client.on "ready", () ->
   client.logger.info('I\'m ready')
 
-@event
 client.on "message", (message) ->
-  args = message.content.split ' '.slice 1
-  command = message.content.split prefix
 
-  return if command[0].charAt 0 != prefix
-  cmd = client.commands.get command[1]
-  cmd = client.commands.get(client.aliases.get command[1]) if cmd == undefined
+  # return if command[0].charAt 0 != prefix
+  try
+    args = message.content.split(' ').slice(1).join(' ')
+    command = message.content.split(prefix)[1].slice(' ').split(' ')[0]
+    console.log command
+    cmd = client.commands.get command
+    cmd = client.commands.get(client.aliases.get command) if cmd == undefined
+    if cmd
+      try
+        client.logger.debug "#{message.author.username} has just been exec #{cmd.help.name}"
+        cmd.run(client, message, args)
+      catch error
+        throw error
+  catch error
 
-  if cmd
-    try
-      cmd.run client, message, args
-      console.debug "#{message.author.username} has just been exec #{cmd.help.name}"
-    catch error
-      throw error
+
 
 client.login config.token
