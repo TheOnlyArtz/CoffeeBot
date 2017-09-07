@@ -4,9 +4,7 @@ exports.run = (client, message, args) ->
   codes = args
   final = CoffeeScript.compile(codes, { bare: 'on' }).replace('.then(e', ',').replace('})))', '}))')
   try
-    theEval = eval(CoffeeScript.compile(codes, { bare: 'on' })
-    .replace('.then(e', ',')
-    .replace('})))', '}))'))
+    theEval = eval(final)
     message.channel.send "Input:\`\`\`coffee\n#{codes}\`\`\`\nOutput:\`\`\`coffee\n#{theEval.toString().replace(/object promise/i, '<Promise Pending>')}\n\`\`\`"
   catch error
     message.channel.send "\`\`\`error\n#{error.toString()}\n\`\`\`"
