@@ -8,6 +8,6 @@ exports.run = (client, message, args) ->
 
 exports.help = {
   name: 'ping',
-  aliases : []
+  aliases : [],
   description : 'I will reply with pong fast as possible as my response time (ms)'
 }
