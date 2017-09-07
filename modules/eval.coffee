@@ -1,5 +1,6 @@
 CoffeeScript = require('coffeescript')
 { exec } = (require 'child_process')
+Discord = require('discord.js')
 exports.run = (client, message, args) ->
   codes = args
   final = CoffeeScript.compile(codes, { bare: 'on' }).replace('.then(e', ',').replace('})))', '}))')

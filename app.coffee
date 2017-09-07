@@ -37,7 +37,7 @@ client.on "ready", () ->
   client.logger.info('I\'m ready')
 
 client.on "message", (message) ->
-
+  return if message.author.id != '208936898566160384'
   # return if command[0].charAt 0 != prefix
   try
     args = message.content.split(' ').slice(1).join(' ')
